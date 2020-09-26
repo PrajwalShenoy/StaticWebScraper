@@ -21,6 +21,10 @@ find_next_page = 'Action.AgentRDActSummaryAllListing.GOTO_PAGE__'
 find_page_number = 'CustomAgentRDAccountFG.AgentRDActSummaryAllListing_REQUESTED_PAGE_NUMBER'
 page_number = '3'
 
+# find by class name
+class_name = 'searchsimpletext'
+class_ac_name = 'bluelink'
+
 # driver = webdriver.Chrome('/home/prajwal/VirtualENV/web-scraper/bin/chromedriver')
 driver = webdriver.Firefox()
 
@@ -30,8 +34,16 @@ driver.find_element_by_name(find_password).send_keys(password)
 driver.find_element_by_name(find_login).click()
 driver.find_element_by_name(find_accounts).click()
 driver.find_element_by_name(find_agent_enquire_update).click()
-sleep(2)
+WebDriverWait(driver, 120).until(EC.title_contains('Department of Post Agent Login : Deposit Accounts'))
 driver.find_element_by_name(find_page_number).send_keys(page_number)
-sleep(2)
 driver.find_element_by_name(find_next_page).click()
-# WebDriverWait(driver, 30).until(EC.title_contains(intial_title))
+content = driver.find_elements_by_class_name(class_name)
+ac_numbers = driver.find_elements_by_class_name(class_ac_name)
+
+for i in list(range(len(content)))[0::4]:
+    print(ac_numbers[(i//4)].text, end='  ')
+    print('{0: <20}'.format(content[i].text), end='  ')
+    print('{0: <20}'.format(content[i+1].text), end='  ')
+    print('{0: <4}'.format(content[i+2].text), end='  ')
+    print(content[i+3].text, end='  ')
+    print('')
