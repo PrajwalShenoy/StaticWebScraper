@@ -46,21 +46,21 @@ while '8' not in temp.text:
 temp = str(temp.text)
 max_number_of_pages = int(temp[temp.find('8'):temp.find('8')+2])
 fhand = open('inventory.txt', 'w')
-for i in range(1, 5):
+for i in range(1, max_number_of_pages+1):
     driver.find_element_by_name(find_page_number).send_keys(str(i))
     driver.find_element_by_name(find_next_page).click()
-    sleep(2)
+    # sleep(1)
     content = driver.find_elements_by_class_name(class_name)
-    ac_numbers = driver.find_elements_by_class_name(class_ac_name)
+    ac_numbers = driver.find_elements_by_xpath("//a[@title='Hyperlink to view details of the account']")
     for j in list(range(len(content)))[0::4]:
         print('{0: <8}'.format(str(i)), end=' ')
-        print(ac_numbers[(i//4)].text, end='  ')
-        print('{0: <20}'.format(content[j].text), end='  ')
-        print('{0: <20}'.format(content[j+1].text), end='  ')
+        print(ac_numbers[(j//4)].text, end='  ')
+        print('{0: <30}'.format(content[j].text), end='  ')
+        print('{0: <18}'.format(content[j+1].text), end='  ')
         print('{0: <4}'.format(content[j+2].text), end='  ')
         print(content[j+3].text, end='  ')
         print('')
-        string_to_write = '{0: <8}'.format(str(i)) + str(ac_numbers[(i//4)].text) + '{0: <20}'.format(str(content[j].text)) + '{0: <20}'.format(str(content[j+1].text)) + '{0: <4}'.format(str(content[j+2].text)) + str(content[j+3].text) + '\n'
+        string_to_write = '{0: <8}'.format(str(i)) + '{0: <20}'.format(str(ac_numbers[(j//4)].text)) + '{0: <30}'.format(str(content[j].text)) + '{0: <20}'.format(str(content[j+1].text)) + '{0: <4}'.format(str(content[j+2].text)) + str(content[j+3].text) + '\n'
         fhand.write(string_to_write)
 fhand.close()
 
@@ -81,4 +81,5 @@ fhand.close()
 
 
 # <span class="paginationtxt1">Page 1 of 84</span> 
-# 
+# Hyperlink to view details of the account
+# driver.find_element_by_xpath("//a[@title='Hyperlink to view details of the account']")
