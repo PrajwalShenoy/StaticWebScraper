@@ -45,7 +45,7 @@ while '8' not in temp.text:
     temp = driver.find_element_by_class_name('paginationtxt1')
 temp = str(temp.text)
 max_number_of_pages = int(temp[temp.find('8'):temp.find('8')+2])
-
+fhand = open('inventory.txt', 'w')
 for i in range(1, 5):
     driver.find_element_by_name(find_page_number).send_keys(str(i))
     driver.find_element_by_name(find_next_page).click()
@@ -60,7 +60,9 @@ for i in range(1, 5):
         print('{0: <4}'.format(content[j+2].text), end='  ')
         print(content[j+3].text, end='  ')
         print('')
-
+        string_to_write = '{0: <8}'.format(str(i)) + str(ac_numbers[(i//4)].text) + '{0: <20}'.format(str(content[j].text)) + '{0: <20}'.format(str(content[j+1].text)) + '{0: <4}'.format(str(content[j+2].text)) + str(content[j+3].text) + '\n'
+        fhand.write(string_to_write)
+fhand.close()
 
 
 
