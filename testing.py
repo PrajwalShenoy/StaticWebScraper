@@ -1,13 +1,11 @@
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait 
 from time import sleep
 
 target_url = 'https://dopagent.indiapost.gov.in/corp/AuthenticationController?FORMSGROUP_ID__=AuthenticationFG&__START_TRAN_FLAG__=Y&__FG_BUTTONS__=LOAD&ACTION.LOAD=Y&AuthenticationFG.LOGIN_FLAG=3&BANK_ID=DOP&AGENT_FLAG=Y'
 user_name = 'DOP.MI5600700400014'
 password = 'ramurohan#105'
-initial_title = 'Department of Post Agent Login : Login'
 
 
 # find by name
@@ -63,23 +61,3 @@ for i in range(1, max_number_of_pages+1):
         string_to_write = '{0: <8}'.format(str(i)) + '{0: <20}'.format(str(ac_numbers[(j//4)].text)) + '{0: <30}'.format(str(content[j].text)) + '{0: <20}'.format(str(content[j+1].text)) + '{0: <4}'.format(str(content[j+2].text)) + str(content[j+3].text) + '\n'
         fhand.write(string_to_write)
 fhand.close()
-
-
-
-
-
-# content = driver.find_elements_by_class_name(class_name) # finds all the names, amount, duration paid, date
-# ac_numbers = driver.find_elements_by_class_name(class_ac_name) # finds account number
-
-# for i in list(range(len(content)))[0::4]:
-#     print(ac_numbers[(i//4)].text, end='  ')
-#     print('{0: <20}'.format(content[i].text), end='  ')
-#     print('{0: <20}'.format(content[i+1].text), end='  ')
-#     print('{0: <4}'.format(content[i+2].text), end='  ')
-#     print(content[i+3].text, end='  ')
-#     print('')
-
-
-# <span class="paginationtxt1">Page 1 of 84</span> 
-# Hyperlink to view details of the account
-# driver.find_element_by_xpath("//a[@title='Hyperlink to view details of the account']")
