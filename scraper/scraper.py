@@ -8,9 +8,9 @@ with open('credentials.yml') as file:
     data = yaml.full_load(file)
 
 # main variables
-target_url = data['url']['DOP_url']
-user_name = data['login_credentials']['username']
-password = data['login_credentials']['password']
+target_url = 'https://dopagent.indiapost.gov.in/corp/AuthenticationController?FORMSGROUP_ID__=AuthenticationFG&__START_TRAN_FLAG__=Y&__FG_BUTTONS__=LOAD&ACTION.LOAD=Y&AuthenticationFG.LOGIN_FLAG=3&BANK_ID=DOP&AGENT_FLAG=Y'
+user_name = 'DOP.MI5600700400014'
+password = 'ramurohan#105'
 
 # page title
 accounts_page_title = 'Department of Post Agent Login : Deposit Accounts'
