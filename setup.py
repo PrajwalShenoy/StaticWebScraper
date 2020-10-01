@@ -15,7 +15,7 @@ setup(
     author_email='prajwalkpshenoy@gmail.com',
     description='Downloads all the account information from the DPO website',
     packages=['scraper'],
-    install_dependencies=dependencies,
+    install_requires=dependencies,
     entry_points={
         'console_scripts':[
             'scraper = '
